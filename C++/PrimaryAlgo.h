@@ -25,6 +25,8 @@ public:
 	int singleNumber(vector<int>& nums);
 	vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
 	vector<int> plusOne(vector<int>& digits);
+	void moveZeroes(vector<int>& nums);
+	bool isValidSudoku(vector<vector<char>>& board);
 };
 
 #endif // !_PRIMARYALGO_H_

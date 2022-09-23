@@ -208,3 +208,48 @@ vector<int> PrimaryAlgo::plusOne(vector<int>& digits) {
 	digits.insert(digits.begin(), 1);
 	return digits;*/
 }
+
+void PrimaryAlgo::moveZeroes(vector<int>& nums) {
+	/*// 0元素后移较好
+	if (nums.empty() || nums.size() < 2) return;
+	int index = 0;
+	for (int i = 0; i < nums.size(); i++) {
+		if (nums[i] != 0) {
+			nums[index++] = nums[i];
+		}
+	}
+	while (index < nums.size()) {
+		nums[index++] = 0;
+	}*/
+	// 双指针
+	if (nums.empty() || nums.size() < 2) return;
+	int i = 0;
+	for (int j = 0; j < nums.size(); j++) {
+		if (nums[j] != 0) {
+			int temp = nums[j];
+			nums[j] = nums[i];
+			nums[i] = temp;
+			i++;
+		}
+	}
+}
+
+bool PrimaryAlgo::isValidSudoku(vector<vector<char>>& board) {
+	// 位运算
+	int line[9] = { 0 };
+	int column[9] = { 0 };
+	int cell[9] = { 0 };
+	int shift = 0;
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			if (board[i][j] == '.') continue;
+			shift = 1 << (board[i][j] - '0');
+			int k = (i / 3) * 3 + j / 3;
+			if ((line[j] & shift) > 0 || (column[i] & shift) > 0 || (cell[k] & shift) > 0) return false;
+			line[j] = line[j] | shift;
+			column[i] = column[i] | shift;
+			cell[k] = cell[k] | shift;
+		}
+	}
+	return true;
+}

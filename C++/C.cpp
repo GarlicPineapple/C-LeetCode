@@ -18,10 +18,10 @@ int main()
 	Solution solution;
 	//Text text1;
 	PrimaryAlgo p;
-	vector<int> g = { 1,2,2,1 };
+	vector<int> g = { 0,1,0,3,12 };
 	vector<int> gg = { 2,2 };
-	vector<int> res = p.intersect(g, gg);
-	for (int s : res) {
+	p.moveZeroes(g);
+	for (int s : g) {
 		cout << s << endl;
 	}
 	//cout << p.intersect(g, gg) << endl;
