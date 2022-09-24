@@ -27,6 +27,7 @@ public:
 	vector<int> plusOne(vector<int>& digits);
 	void moveZeroes(vector<int>& nums);
 	bool isValidSudoku(vector<vector<char>>& board);
+	void rotate(vector<vector<int>>& matrix);
 };
 
 #endif // !_PRIMARYALGO_H_
