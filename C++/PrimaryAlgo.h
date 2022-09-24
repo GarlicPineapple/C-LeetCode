@@ -28,6 +28,8 @@ public:
 	void moveZeroes(vector<int>& nums);
 	bool isValidSudoku(vector<vector<char>>& board);
 	void rotate(vector<vector<int>>& matrix);
+	// ×Ö·û´®
+	void reverseString(vector<char>& s);
 };
 
 #endif // !_PRIMARYALGO_H_

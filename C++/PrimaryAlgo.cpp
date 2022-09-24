@@ -267,3 +267,7 @@ void PrimaryAlgo::rotate(vector<vector<int>>& matrix) {
 		}
 	}
 }
+
+void PrimaryAlgo::reverseString(vector<char>& s) {
+
+}
