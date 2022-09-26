@@ -20,10 +20,9 @@ int main()
 	PrimaryAlgo p;
 	vector<int> g = { 0,1,0,3,12 };
 	vector<int> gg = { 2,2 };
-	p.moveZeroes(g);
-	for (int s : g) {
-		cout << s << endl;
-	}
+	string m = "loveleetcode";
+	cout << p.firstUniqChar(m);
+	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);
 	//solution.nextPermutation(g);

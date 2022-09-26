@@ -30,6 +30,8 @@ public:
 	void rotate(vector<vector<int>>& matrix);
 	// ×Ö·û´®
 	void reverseString(vector<char>& s);
+	int reverse(int x);
+	int firstUniqChar(string s);
 };
 
 #endif // !_PRIMARYALGO_H_

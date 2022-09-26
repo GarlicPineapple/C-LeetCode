@@ -269,5 +269,36 @@ void PrimaryAlgo::rotate(vector<vector<int>>& matrix) {
 }
 
 void PrimaryAlgo::reverseString(vector<char>& s) {
+	int n = s.size();
+	for (int i = 0; i < n / 2; i++) {
+		int temp = s[i];
+		s[i] = s[n - i - 1];
+		s[n - i - 1] = temp;
+	}
+}
+int PrimaryAlgo::reverse(int x) {
+	int res = 0;
+	while (x) {
+		int t = x % 10;
+		if (res > INT_MAX / 10 || res < INT_MIN / 10) return 0;
+		res = res * 10 + t;
+		x /= 10;
+	}
+	return res;
+}
 
+int PrimaryAlgo::firstUniqChar(string s) {
+	unordered_map<char, int> map;
+	for (int i = 0; i < s.size(); i++) {
+		if (map.count(s[i]) == 0) {
+			map[s[i]] = 0;
+		}
+		else {
+			map[s[i]]++;
+		}
+	}
+	for (int i = 0; i < s.size(); i++) {
+		if (map[s[i]] == 0) return i;
+	}
+	return -1;
 }
