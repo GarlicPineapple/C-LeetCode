@@ -37,6 +37,8 @@ public:
 	bool isPalindrome(string s);
 	int myAtoi(string s);
 	int strStr(string haystack, string needle);
+	string countAndSay(int n);
+	string countAndSay_recursive(int n);
 };
 
 #endif // !_PRIMARYALGO_H_

@@ -368,5 +368,62 @@ int PrimaryAlgo::myAtoi(string s) {
 }
 
 int PrimaryAlgo::strStr(string haystack, string needle) {
+	int index = -1;
+	int hlength = haystack.length(), nlength = needle.length();
+	if (nlength > hlength) return index;
+	for (int i = 0; i < hlength; i++) {
+		if (haystack[i] == needle[0] && (hlength - i) >= nlength) {
+			index = i;
+			for (int j = 0; j < nlength; j++) {
+				if (haystack[i] == needle[j] && j == nlength - 1) return index; // 若最后一个字符也匹配，则返回
+				if (haystack[i] != needle[j]) {
+					i = index; // 若字符不匹配，则从匹配的第一个字符的下一个继续遍历
+					index = -1;
+					break;
+				}
+				i++;
+			}
+		}
+	}
+	return index;
+}
 
+string PrimaryAlgo::countAndSay(int n) {
+	//return countAndSay_recursive(n); // 递归
+	// 官方
+	string prev = "1";
+	for (int i = 2; i <= n; ++i) {
+		string curr = "";
+		int start = 0;
+		int pos = 0;
+
+		while (pos < prev.size()) {
+			while (pos < prev.size() && prev[pos] == prev[start]) {
+				pos++;
+			}
+			curr += to_string(pos - start) + prev[start];
+			start = pos;
+		}
+		prev = curr;
+	}
+
+	return prev;
+}
+
+string PrimaryAlgo::countAndSay_recursive(int n) {
+	if (n == 1) return "1";
+	string s = countAndSay_recursive(n - 1);
+	string res;
+	char temp = s[0];
+	int count = 1;
+	for (int i = 1; i < s.length(); i++) {
+		if (s[i] == temp) count++;
+		else {
+			res = res + to_string(count) + temp;
+			temp = s[i];
+			count = 1;
+		}
+	}
+	res = res + to_string(count) + temp;
+	return res;
 }

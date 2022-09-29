@@ -23,7 +23,7 @@ int main()
 	string m = "loveleetcode";
 	string t = "rat";
 	string s = "21474836460";
-	cout << p.myAtoi(s);
+	cout << p.countAndSay(5);
 	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);
