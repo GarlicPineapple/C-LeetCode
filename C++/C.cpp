@@ -21,7 +21,9 @@ int main()
 	vector<int> g = { 0,1,0,3,12 };
 	vector<int> gg = { 2,2 };
 	string m = "loveleetcode";
-	cout << p.firstUniqChar(m);
+	string t = "rat";
+	string s = "21474836460";
+	cout << p.myAtoi(s);
 	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);

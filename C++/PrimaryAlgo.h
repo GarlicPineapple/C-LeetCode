@@ -10,6 +10,7 @@
 #include <unordered_set> 
 #include <unordered_map> 
 #include <stack>
+#include <regex> // ’˝‘Ú∆•≈‰
 using namespace std;
 
 class PrimaryAlgo
@@ -32,6 +33,10 @@ public:
 	void reverseString(vector<char>& s);
 	int reverse(int x);
 	int firstUniqChar(string s);
+	bool isAnagram(string s, string t);
+	bool isPalindrome(string s);
+	int myAtoi(string s);
+	int strStr(string haystack, string needle);
 };
 
 #endif // !_PRIMARYALGO_H_

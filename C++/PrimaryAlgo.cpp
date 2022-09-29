@@ -302,3 +302,71 @@ int PrimaryAlgo::firstUniqChar(string s) {
 	}
 	return -1;
 }
+
+bool PrimaryAlgo::isAnagram(string s, string t) {
+	// 自己写的
+	if (s.size() != t.size()) return false;
+	unordered_map<char, int> map;
+	for (int i = 0; i < s.size(); i++) {
+		if (map[s[i]]) {
+			map[s[i]]++;
+		}
+		else {
+			map[s[i]] = 1;
+		}
+	}
+	for (int i = 0; i < t.size(); i++) {
+		if (map[t[i]]) {
+			map[t[i]]--;
+			if (map[t[i]] == 0) {
+				map.erase(t[i]);
+			}
+		}
+		else return false;
+	}
+	if (map.empty()) return true;
+	return false;
+}
+
+bool PrimaryAlgo::isPalindrome(string s) {
+	regex reg("[^0-9a-zA-Z]");
+	s = regex_replace(s, reg, "");
+	if (s.empty() || s.size() == 1) return true;
+	int l = 0, r = s.size() - 1;
+	while (l <= r) {
+		if (s[l] == s[r]) {
+			l++;
+			r--;
+		}
+		else return false;
+	}
+	return true;
+}
+
+int PrimaryAlgo::myAtoi(string s) {
+	int res = 0;
+	int i = 0;
+	int flag = 1;
+	while (s[i] == ' ') { // 第一个判断，判断是否为空格
+		i++;
+	}
+	if (s[i] == '-') {    // 第二个判断，判断是否为负数
+		flag = -1;  // 如果判断是负数，那么把flag赋值为-1。
+	}
+	if (s[i] == '+' || s[i] == '-') {  // 判断除开首位后是否还有字符+和——
+		i++;
+	}
+	while (i < s.size() && isdigit(s[i])) { // 只有同时满足小于字符串长度，并且是十进制数字字符。则进入记录
+		int r = s[i] - '0';  // 这一步 数字字符 减去 '0'字符对应的十进制，那么可以得到这个数字字符本身的数字值。这点下面会有涉及知识详解。
+		if (res > INT_MAX / 10 || (res == INT_MAX / 10 && r > 7)) { // 此处判断是否超过2的31次方和2的负31次方-1. 即INT_MAX 和 INT_MIN
+			return flag > 0 ? INT_MAX : INT_MIN;  // 判断正负，正则输出INT_MAX，负责输出INT_MIN
+		}
+		res = res * 10 + r;   // 一位一位的存储进来，从个位到十位，百位。以此类推，所以每次乘一个10；
+		i++; // 向下一位读取字符
+	}
+	return flag > 0 ? res : -res;  // 通过前面读取的首尾判断出来的正负之后给flag的值，用到这里的三目运算。 正 则输出正数res，负 则输出负数res。
+}
+
+int PrimaryAlgo::strStr(string haystack, string needle) {
+
+}
