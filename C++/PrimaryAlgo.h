@@ -11,6 +11,7 @@
 #include <unordered_map> 
 #include <stack>
 #include <regex> // ’˝‘Ú∆•≈‰
+#include "Structure.h"
 using namespace std;
 
 class PrimaryAlgo
@@ -39,6 +40,10 @@ public:
 	int strStr(string haystack, string needle);
 	string countAndSay(int n);
 	string countAndSay_recursive(int n);
+	string longestCommonPrefix(vector<string>& strs);
+	// ¡¥±Ì
+	void deleteNode(ListNode* node);
+	ListNode* removeNthFromEnd(ListNode* head, int n);
 };
 
 #endif // !_PRIMARYALGO_H_

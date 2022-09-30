@@ -427,3 +427,70 @@ string PrimaryAlgo::countAndSay_recursive(int n) {
 	res = res + to_string(count) + temp;
 	return res;
 }
+
+string PrimaryAlgo::longestCommonPrefix(vector<string>& strs) {
+	string res = "";
+	for (int i = 0; i < strs[0].length(); i++) {
+		for (int j = 0; j < strs.size(); j++) {
+			if (strs[0][i] == strs[j][i] && j == strs.size() - 1) {
+				res += strs[0][i];
+			}
+			else if (strs[0][i] != strs[j][i]) return res;
+		}
+	}
+	return res;
+}
+
+void PrimaryAlgo::deleteNode(ListNode* node) {
+	node->val = node->next->val;
+	node->next = node->next->next;
+}
+
+ListNode* PrimaryAlgo::removeNthFromEnd(ListNode* head, int n) {
+	/*// 双指针 - 一步
+	if (head == NULL || (head->next == NULL && n == 1)) return NULL;
+	ListNode *l = head;
+	ListNode *r = head;
+	int length = 1;
+	while (r != NULL && r->next != NULL) {
+		l = l->next;
+		r = r->next->next;
+		length += 2;
+	}
+	if (r == NULL) {
+		length -= 1;
+	}
+	if ((length - n) >= length / 2) {
+		length = length - n - length / 2 - 1;
+		if (length == -1) return head->next;
+		while (length) {
+			l = l->next;
+			length--;
+		}
+		l->next = l->next->next;
+	}
+	else {
+		r = head;
+		length = length - n - 1;
+		while (length) {
+			r = r->next;
+			length--;
+		}
+		r->next = r->next->next;
+	}
+	return head;*/
+	// 双指针 - n步
+	if (head == NULL || (head->next == NULL && n == 1)) return NULL;
+	ListNode *l = head;
+	ListNode *r = head;
+	for (int i = 0; i < n; i++) {
+		r = r->next;
+	}
+	if (r == NULL) return head->next;
+	while (r->next != NULL) {
+		r = r->next;
+		l = l->next;
+	}
+	l->next = l->next->next;
+	return head;
+}
