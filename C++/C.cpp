@@ -23,7 +23,16 @@ int main()
 	string m = "loveleetcode";
 	string t = "rat";
 	string s = "21474836460";
-	cout << p.countAndSay(5);
+	ListNode *head1 = new ListNode(1);
+	ListNode *node1 = new ListNode(0);
+	ListNode *node12 = new ListNode(1);
+	ListNode *node13 = new ListNode(4);
+	ListNode *node14 = new ListNode(5);
+	head1->next = node1;
+	node1->next = node12;
+	//node12->next = node13;
+	//node13->next = node14;
+	cout << p.isPalindrome(head1);
 	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);

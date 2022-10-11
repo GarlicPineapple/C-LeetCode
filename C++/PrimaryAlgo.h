@@ -44,6 +44,12 @@ public:
 	// Á´±í
 	void deleteNode(ListNode* node);
 	ListNode* removeNthFromEnd(ListNode* head, int n);
+	ListNode* reverseList(ListNode* head);
+	ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
+	bool isPalindrome(ListNode* head);
+	bool hasCycle(ListNode *head);
+	// Ê÷
+	int maxDepth(TreeNode* root);
 };
 
 #endif // !_PRIMARYALGO_H_
