@@ -16,23 +16,20 @@ using namespace std;
 int main()
 {
 	Solution solution;
-	//Text text1;
+	Text text1;
 	PrimaryAlgo p;
-	vector<int> g = { 0,1,0,3,12 };
-	vector<int> gg = { 2,2 };
-	string m = "loveleetcode";
-	string t = "rat";
-	string s = "21474836460";
-	ListNode *head1 = new ListNode(1);
-	ListNode *node1 = new ListNode(0);
-	ListNode *node12 = new ListNode(1);
-	ListNode *node13 = new ListNode(4);
-	ListNode *node14 = new ListNode(5);
-	head1->next = node1;
-	node1->next = node12;
-	//node12->next = node13;
-	//node13->next = node14;
-	cout << p.isPalindrome(head1);
+	TreeNode* node9 = new TreeNode(10);
+	TreeNode* node0 = new TreeNode(1);
+	TreeNode* node1 = new TreeNode(2,node0,nullptr);
+	TreeNode* node2 = new TreeNode(4);
+	TreeNode* node3 = new TreeNode(5,node2,nullptr);
+	TreeNode* node4 = new TreeNode(3,node1,node3);
+	TreeNode* node5 = new TreeNode(7);
+	//TreeNode* node6 = new TreeNode(9);
+	TreeNode* node6 = new TreeNode(9,node9,nullptr);
+	TreeNode* node7 = new TreeNode(8,node5,node6);
+	TreeNode* node8 = new TreeNode(6,node4,node7);
+	cout << text1.isBST(node8);
 	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);

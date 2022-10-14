@@ -27,6 +27,12 @@ struct TreeNode {
 	TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };// Ê÷½Úµã
 
+class BalanceReturnType {
+public:
+	int height;
+	bool isBalance;
+	BalanceReturnType(bool isB, int h):isBalance(isB),height(h){}
+};
 class Structure
 {
 

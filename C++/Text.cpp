@@ -125,6 +125,7 @@ void Text::OrderRecur(TreeNode *head) {
 	OrderRecur(head->right);
 	//后序
 }// 二叉树递归遍历
+
 void Text::preOrderUnRecur(TreeNode *head) {
 	if (head != NULL) {
 		stack<TreeNode*> stackk;
@@ -141,7 +142,87 @@ void Text::preOrderUnRecur(TreeNode *head) {
 		}
 	}
 } // 二叉树非递归先序遍历
+
 void Text::inOrderUnRecur(TreeNode *head) {
-} // 二叉树非递归先序遍历
+} // 二叉树非递归中序遍历
+
 void Text::posOrderUnRecur(TreeNode *head) {
 } // 二叉树非递归后序遍历
+
+// 搜索二叉树判断(方法1递归，方法2非递归)中序遍历
+int BSTPreValue = INT_MIN;
+bool Text::isBST(TreeNode* head) {
+	// 递归
+	if (head == NULL) return true;
+	bool LeftisBST = isBST(head->left);
+	if (!LeftisBST) return false;
+	else {
+		if (head->val <= BSTPreValue) return false;
+		else BSTPreValue = head->val;
+	}
+	return isBST(head->right);
+	// 非递归
+	if (head == NULL) return true;
+	int BSTPreValue = INT_MIN;
+	stack<TreeNode*> tree;
+	while (!tree.empty() || head != NULL) {
+		if (head != NULL) {
+			tree.push(head);
+			head = head->left;
+		}
+		else {
+			head = tree.top();
+			if (head->val <= BSTPreValue) return false;
+			else BSTPreValue = head->val;
+			head = head->right;
+		}
+	}
+	return true;
+}
+
+// 完全二叉树判断
+bool Text::isCBT(TreeNode* head) {
+	// 宽度优先遍历
+	// 1、任意一节点有右孩子无左孩子 false
+	// 2、某节点仅有左孩子，则后续结点都为叶子结点。不满足则false
+	if (head == NULL) return true;
+	queue<TreeNode*> tree;
+	TreeNode *l = NULL;
+	TreeNode *r = NULL;
+	bool leaf = false;
+	tree.push(head);
+	// C++队列无返回第一个元素并删除函数
+	while (!tree.empty()) {
+		head = tree.front();
+		tree.pop();
+		l = head->left;
+		r = head->right;
+		if ((leaf && (l != NULL || r != NULL)) || (l == NULL && r != NULL)) return false;
+		if (l != NULL) tree.push(l);
+		if (r != NULL) tree.push(r);
+		if (l == NULL || r == NULL) leaf = true;
+	}
+	return true;
+}
+
+// 树型DP（动态规划）问题解题思路：从左树、右树获取信息解题
+// 平衡二叉树判断
+bool Text::isBalance(TreeNode* head) {
+	// 获取左树和右树信息：是否平衡，高度
+	return Balanceprocess(head).isBalance;
+}
+// 平衡二叉树递归判断
+BalanceReturnType Text::Balanceprocess(TreeNode* head) {
+	if (head == NULL) return BalanceReturnType(true, 0); // base
+	BalanceReturnType left = Balanceprocess(head->left);
+	BalanceReturnType right = Balanceprocess(head->right);
+	int height = max(left.height, right.height) + 1;
+	// 左树平衡 && 右树平衡 && 左树与右树深度差小于2
+	bool Balance = left.isBalance && right.isBalance && abs(left.height - right.height) < 2;
+	return BalanceReturnType(Balance, height);
+}
+
+// 返回两节点最低公共祖先
+TreeNode* Text::LowestCommonAncester(TreeNode *head, TreeNode *o1, TreeNode *o2) {
+
+}
