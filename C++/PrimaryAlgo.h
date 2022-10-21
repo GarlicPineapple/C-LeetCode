@@ -50,6 +50,7 @@ public:
 	bool hasCycle(ListNode *head);
 	// Ê÷
 	int maxDepth(TreeNode* root);
+	bool isValidBST(TreeNode* root);
 };
 
 #endif // !_PRIMARYALGO_H_

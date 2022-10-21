@@ -224,5 +224,39 @@ BalanceReturnType Text::Balanceprocess(TreeNode* head) {
 
 // 返回两节点最低公共祖先
 TreeNode* Text::LowestCommonAncester(TreeNode *head, TreeNode *o1, TreeNode *o2) {
+	// 递归使用HashMap
+	unordered_map<TreeNode*, TreeNode*> map;
+	map[head] = head;
+	LCAprocess(head, map);
+	unordered_set<TreeNode*> set1;
+	TreeNode *curr = o1;
+	while (curr != map[curr]) {
+		set1.insert(curr);
+		curr = map[curr];
+	}
+	set1.insert(head);
+	while (!set1.count(o2)) {
+		o2 = map[o2];
+	}
+	return o2;
+	// 递归不使用HashMap
+	// 1、分为两种情况：①o1或o2为最低公共祖先；②o1和o2上层为最低公共祖先
+	if (head == NULL || head == o1 || head == o2) return head; // base
+	TreeNode* left = LowestCommonAncester(head->left, o1, o2);
+	TreeNode* right = LowestCommonAncester(head->right, o1, o2);
+	if (left != NULL && right != NULL) {
+		return head;
+	}
+	return left != NULL ? left : right;
+}
 
+// LowestCommonAncester递归函数
+void Text::LCAprocess(TreeNode* head, unordered_map<TreeNode*, TreeNode*> fatherMap) {
+	if (head->left == NULL && head->right == NULL) return; // base
+	fatherMap[head->left] = head;
+	fatherMap[head->right] = head;
+	//fatherMap.insert(head->left, head); 使用insert会报错？？？
+	//fatherMap.insert(head->right, head);
+	LCAprocess(head->left, fatherMap);
+	LCAprocess(head->right, fatherMap);
 }

@@ -15,7 +15,7 @@ using namespace std;
 
 int main()
 {
-	Solution solution;
+	//Solution solution;
 	Text text1;
 	PrimaryAlgo p;
 	TreeNode* node9 = new TreeNode(10);
@@ -29,7 +29,7 @@ int main()
 	TreeNode* node6 = new TreeNode(9,node9,nullptr);
 	TreeNode* node7 = new TreeNode(8,node5,node6);
 	TreeNode* node8 = new TreeNode(6,node4,node7);
-	cout << text1.isBST(node8);
+	cout << p.maxDepth(node8);
 	
 	//cout << p.intersect(g, gg) << endl;
 	//solution.search(g, 3);

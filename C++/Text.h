@@ -5,6 +5,7 @@
 #include "Structure.h"
 #include <iostream>
 #include <unordered_map> 
+#include <unordered_set> 
 #include <stack>
 #include <queue>
 using namespace std;
@@ -31,7 +32,8 @@ public:
 	// 树型DP（动态规划）问题解题思路：从左树、右树获取信息解题
 	bool isBalance(TreeNode* head);// 平衡二叉树判断
 	BalanceReturnType Balanceprocess(TreeNode* head);// 平衡二叉树递归判断
-	TreeNode* LowestCommonAncester(TreeNode *head, TreeNode *o1, TreeNode *o2);// 返回两节点最低公共祖先
+	TreeNode* LowestCommonAncester(TreeNode *head, TreeNode *o1, TreeNode *o2);// 返回两节点最低公共祖先(方法1递归使用HashMap，方法2递归不适用HashMap<优化>)
+	void LCAprocess(TreeNode* head, unordered_map<TreeNode*,TreeNode*> fatherMap);// LowestCommonAncester递归函数
 
 };
 #endif // !_TEXT_H_

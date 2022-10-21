@@ -584,5 +584,9 @@ bool PrimaryAlgo::hasCycle(ListNode *head) {
 }
 
 int PrimaryAlgo::maxDepth(TreeNode* root) {
-	return 0;
+	return root == NULL ? 0 : max(maxDepth(root->left), maxDepth(root->right)) + 1;
+}
+
+bool PrimaryAlgo::isValidBST(TreeNode* root) {
+
 }
