@@ -588,5 +588,56 @@ int PrimaryAlgo::maxDepth(TreeNode* root) {
 }
 
 bool PrimaryAlgo::isValidBST(TreeNode* root) {
+	if (root == NULL) return true;
+	long long BSTBeforVal = (long long)INT_MIN - 1;
+	stack<TreeNode*> tree;
+	while (!tree.empty() || root != NULL) {
+		while (root != NULL) {
+			tree.push(root);
+			root = root->left;
+		}
+		root = tree.top();
+		tree.pop();
+		if (root->val <= BSTBeforVal) return false;
+		BSTBeforVal = root->val;
+		root = root->right;
+	}
+	return true;
+}
+
+bool PrimaryAlgo::isSymmetric(TreeNode* root) {
+	// µÝ¹é
+	//if (root == NULL) return true;
+	//return isSymmetric_recursive(root->left, root->right);
+	// ·ÇµÝ¹é£¨¶ÓÁÐ£©
+	if (root == NULL || (root->left == NULL && root->right == NULL)) return true;
+	queue<TreeNode*> tree; // ¶ÓÁÐ±£´æ½Úµã
+	tree.push(root->left);
+	tree.push(root->right);
+	while (!tree.empty()) {
+		TreeNode* left = tree.front();
+		tree.pop();
+		TreeNode* right = tree.front();
+		tree.pop();
+		if (left == NULL && right == NULL) continue;
+		if (left == NULL || right == NULL) return false;
+		if (left->val != right->val) return false;
+		tree.push(left->left); // ×óÊ÷×óº¢×ÓÓëÓÒÊ÷ÓÒº¢×Ó
+		tree.push(right->right);
+		tree.push(left->right); // ×óÊ÷ÓÒº¢×ÓÓëÓÒÊ÷×óº¢×Ó
+		tree.push(right->left);
+	}
+	return true;
+}
+
+bool PrimaryAlgo::isSymmetric_recursive(TreeNode* left, TreeNode* right) {
+	// ×óÊ÷×óº¢×Ó = ÓÒÊ÷ÓÒº¢×Ó£» ×óÊ÷ÓÒº¢×Ó = ÓÒÊ÷×óº¢×Ó
+	if (left == NULL && right == NULL) return true;
+	if (left == NULL || right == NULL) return false;
+	if (left->val != right->val) return false;
+	return isSymmetric_recursive(left->left,right->right) && isSymmetric_recursive(left->right,right->left);
+}
+
+vector<vector<int>> PrimaryAlgo::levelOrder(TreeNode* root) {
 
 }

@@ -10,6 +10,7 @@
 #include <unordered_set> 
 #include <unordered_map> 
 #include <stack>
+#include <queue>
 #include <regex> // ÕýÔòÆ¥Åä
 #include "Structure.h"
 using namespace std;
@@ -51,6 +52,9 @@ public:
 	// Ê÷
 	int maxDepth(TreeNode* root);
 	bool isValidBST(TreeNode* root);
+	bool isSymmetric(TreeNode* root);
+	bool isSymmetric_recursive(TreeNode* left, TreeNode* right);
+	vector<vector<int>> levelOrder(TreeNode* root);
 };
 
 #endif // !_PRIMARYALGO_H_

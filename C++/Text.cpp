@@ -172,6 +172,7 @@ bool Text::isBST(TreeNode* head) {
 		}
 		else {
 			head = tree.top();
+			tree.pop();
 			if (head->val <= BSTPreValue) return false;
 			else BSTPreValue = head->val;
 			head = head->right;
